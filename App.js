@@ -1,20 +1,36 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+
+
+import 'react-native-gesture-handler';
+import { createStackNavigator } from '@react-navigation/stack';
+import { NavigationContainer } from '@react-navigation/native';
+
+import ListProduct from './screens/ListProduct';
+import CreateProduct from './screens/CreateProduct';
+import ShowProduct from './screens/ShowProduct';
+import EditProduct from './screens/EditProduct';
+
+
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
-}
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+  const Stack = createStackNavigator();
+
+  function MyStack(){
+    return(
+      <Stack.Navigator>
+        <Stack.Screen name='List' component={ListProduct}/>
+        <Stack.Screen name='Create' component={CreateProduct}/>
+        <Stack.Screen name='Show' component={ShowProduct}/>
+        <Stack.Screen name='Edit' component={EditProduct}/>
+
+      </Stack.Navigator>
+    )
+  }
+
+
+  return (
+<NavigationContainer>
+  <MyStack/>
+</NavigationContainer>
+  )
+}
